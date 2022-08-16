@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "1B8C0A59-2940-4E48-BD46-6E06E2FDFE1A",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "APIClientTests",
+        "name" : "APIClientTests"
+      }
+    }
+  ],
+  "version" : 1
+}
