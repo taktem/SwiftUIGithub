@@ -23,8 +23,13 @@ public enum Method {
 }
 
 public struct Endpoint {
-    let hostName: String
-    let path: String
+    public init(hostName: String, path: String) {
+        self.hostName = hostName
+        self.path = path
+    }
+    
+    public let hostName: String
+    public let path: String
 
     var url: URL {
         var urlComponents = URLComponents(string: hostName)!
@@ -34,7 +39,7 @@ public struct Endpoint {
     }
 }
 
-protocol RequestConfiguration {
+public protocol RequestConfiguration {
     associatedtype Response
 
     var method: Method { get }
@@ -45,8 +50,8 @@ protocol RequestConfiguration {
     func response(from data: Data) throws -> Response
 }
 
-protocol DecodableRequestConfiguration: RequestConfiguration where Response: Decodable { }
-extension DecodableRequestConfiguration {
+public protocol DecodableRequestConfiguration: RequestConfiguration where Response: Decodable { }
+public extension DecodableRequestConfiguration {
     func response(from data: Data) throws -> Response {
         return try JSONDecoder().decode(Response.self, from: data)
     }

@@ -32,10 +32,10 @@ public protocol APIClientErrorHandlerProtocol {
 }
 
 public final class APIClient {
-    struct Dependency {
+    public struct Dependency {
         let session: URLSessionClientProtocol
 
-        static var `default`: Dependency {
+        public static var `default`: Dependency {
             return Dependency(
                 session: URLSessionClient()
             )
@@ -47,7 +47,7 @@ public final class APIClient {
 
     private let dependency: Dependency
 
-    init(dependency: Dependency = .default) {
+    public init(dependency: Dependency = .default) {
         self.dependency = dependency
     }
 
@@ -59,7 +59,7 @@ public final class APIClient {
         self.defaultErrorHandlers = errorHandlers
     }
 
-    func connect<Config: RequestConfiguration>(
+    public func connect<Config: RequestConfiguration>(
         config: Config,
         customErrorHandler: @escaping ((APIClientError) -> Bool) = { _ in return true }
         ) async throws -> Config.Response {
@@ -115,18 +115,18 @@ private struct URLSessionClientTask {
 
         switch method {
         case "GET", "DELETE":
-            var queryItems = urlComponents.queryItems
+            var queryItems = urlComponents.queryItems ?? [URLQueryItem]()
             try parameters.forEach {
                 if let array = $0.value as? [Any] {
                     let key = "\($0.key)[]"
                     for value in array {
-                        queryItems?.append(.init(
+                        queryItems.append(.init(
                             name: key,
                             value: try queryItemEncoderHandler.encode(value)
                         ))
                     }
                 } else {
-                    queryItems?.append(.init(
+                    queryItems.append(.init(
                         name: $0.key,
                         value: try queryItemEncoderHandler.encode($0.value)
                     ))
