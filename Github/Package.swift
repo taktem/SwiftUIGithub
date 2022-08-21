@@ -15,14 +15,28 @@ let package = Package(
             targets: ["Github"]),
     ],
     dependencies: [
-        .package(path: "../ProjectFoundation")
+        .package(path: "../ProjectFoundation"),
+        .package(path: "../APIClient")
     ],
     targets: [
         .target(
             name: "Github",
             dependencies: [
                 .product(name: "ProjectFoundation", package: "ProjectFoundation"),
+                "Domain",
+                "Infra"
             ]),
+        .target(
+            name: "Infra",
+            dependencies: [
+                .product(name: "APIClient", package: "APIClient"),
+                "Domain"
+            ]
+        ),
+        .target(
+            name: "Domain",
+            dependencies: []
+        ),
         .testTarget(
             name: "GithubTests",
             dependencies: ["Github"]),

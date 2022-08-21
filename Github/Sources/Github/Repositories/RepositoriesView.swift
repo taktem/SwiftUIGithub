@@ -3,21 +3,12 @@
 //
 
 import SwiftUI
-
-struct NavigationChildView {
-    enum Child {
-        case repository
-    }
-    var isChildViewVisible: Bool {
-        didSet {
-            child = nil
-        }
-    }
-    var child: Child?
-}
+import Domain
+import Infra
 
 @MainActor final class RepositoriesViewModel: ObservableObject {
     var userName: String
+    @Published var hasChildView = false
     
     init(userName: String) {
         self.userName = userName
@@ -28,10 +19,13 @@ struct RepositoriesView: View {
     @StateObject var viewModel: RepositoriesViewModel
 
     var body: some View {
-        ZStack {
-            VStack {
-                Text(viewModel.userName)
-            }
+        NavigationLink(
+            destination: Text("\(viewModel.userName)'s Repository Detail"),
+            isActive: $viewModel.hasChildView,
+            label: { EmptyView() })
+        
+        Button("Detail") {
+            viewModel.hasChildView = true
         }
     }
 }

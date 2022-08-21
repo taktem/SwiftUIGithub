@@ -5,11 +5,6 @@
 import SwiftUI
 import ProjectFoundation
 
-struct Item: Identifiable {
-    var id: String { return name }
-    
-    var name: String
-}
 
 public struct UserListView: View {
     @StateObject var viewModel = UserListViewModel()
@@ -34,9 +29,12 @@ public struct UserListView: View {
                 .padding()
                 List {
                     ForEach(viewModel.items) { s in
-                        NavigationLink(destination: RepositoriesView(viewModel: .init(userName: s.name))) {
-                            Text(s.name)
-                        }
+                        NavigationLink(
+                            destination: RepositoriesView(
+                                viewModel: .init(userName: s.name)
+                            ),
+                            label: { Text(s.name) }
+                        )
                         .listRowInsets(EdgeInsets())
                     }
                     .padding()

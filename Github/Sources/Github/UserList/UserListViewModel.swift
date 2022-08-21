@@ -3,12 +3,21 @@
 //
 
 import Combine
+import Infra
+
+struct UserViewObject: Identifiable {
+    var id: String { return name }
+    var name: String
+}
 
 @MainActor final class UserListViewModel: ObservableObject {
     @Published var textFieldValue = ""
-    @Published var items: [Item] = [.init(name: "taktem"), .init(name: "hoge")]
+    @Published var items: [UserViewObject] = []
     
     func onTap() {
-        items.append(.init(name: "test"))
+        Task {
+            let repo = try! await GithubUsersRepository().fetch(searchWord: textFieldValue)
+            items = repo.map { UserViewObject(name: $0.userName) }
+        }
     }
 }
