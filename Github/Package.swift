@@ -16,15 +16,17 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../ProjectFoundation"),
-        .package(path: "../APIClient")
+        .package(path: "../APIClient"),
+        .package(path: "../UIUtility")
     ],
     targets: [
         .target(
             name: "Github",
             dependencies: [
                 .product(name: "ProjectFoundation", package: "ProjectFoundation"),
+                .product(name: "UIUtility", package: "UIUtility"),
                 "Domain",
-                "Infra"
+                "Infra",
             ]),
         .target(
             name: "Infra",

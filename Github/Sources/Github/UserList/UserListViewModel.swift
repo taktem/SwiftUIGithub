@@ -2,12 +2,14 @@
 //  Created by taktem on 2022/08/06
 //
 
+import Foundation
 import Combine
 import Infra
 
 struct UserViewObject: Identifiable {
     var id: String { return name }
     var name: String
+    var avatarURL: URL
 }
 
 @MainActor final class UserListViewModel: ObservableObject {
@@ -16,8 +18,8 @@ struct UserViewObject: Identifiable {
     
     func onTap() {
         Task {
-            let repo = try! await GithubUsersRepository().fetch(searchWord: textFieldValue)
-            items = repo.map { UserViewObject(name: $0.userName) }
+            let users = try! await GithubUsersRepository().fetch(searchWord: textFieldValue)
+            items = users.map { UserViewObject(name: $0.userName, avatarURL: $0.avatarURL) }
         }
     }
 }

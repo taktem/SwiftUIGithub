@@ -11,10 +11,12 @@ private struct GithubUsersRequest: DecodableRequestConfiguration {
         struct GithubUserDTO: Decodable {
             let id: Int
             let userName: String
+            let avatarURL: URL
             
             enum CodingKeys: String, CodingKey {
                 case id
                 case userName = "login"
+                case avatarURL = "avatar_url"
             }
         }
 
@@ -38,6 +40,6 @@ public struct GithubUsersRepository {
     public func fetch(searchWord: String) async throws -> [GithubUser] {
         try await APIClient().connect(config: GithubUsersRequest(searchWord: searchWord))
             .items
-            .map { GithubUser(id: $0.id, userName: $0.userName) }
+            .map { GithubUser(id: $0.id, userName: $0.userName, avatarURL: $0.avatarURL) }
     }
 }

@@ -54,6 +54,7 @@
 		65BA54FA289EA83700B3A38A /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BA54FE289EA83700B3A38A /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		65BA5500289EA83700B3A38A /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		EAC4B92F28BA7369009E9115 /* UIUtility */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UIUtility; path = ../UIUtility; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +96,7 @@
 				650BB1E628A93266006C15E9 /* APIClient */,
 				650BB1E928ABD9BA006C15E9 /* Github */,
 				650BB1ED28ABDE2D006C15E9 /* ProjectFoundation */,
+				EAC4B92F28BA7369009E9115 /* UIUtility */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -507,6 +509,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = EEK6638VQK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SwiftUIGithub--iOS--Info.plist";
@@ -536,6 +539,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = EEK6638VQK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SwiftUIGithub--iOS--Info.plist";

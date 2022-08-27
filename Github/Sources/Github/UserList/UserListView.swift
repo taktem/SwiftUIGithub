@@ -4,7 +4,7 @@
 
 import SwiftUI
 import ProjectFoundation
-
+import UIUtility
 
 public struct UserListView: View {
     @StateObject var viewModel = UserListViewModel()
@@ -33,7 +33,24 @@ public struct UserListView: View {
                             destination: RepositoriesView(
                                 viewModel: .init(userName: s.name)
                             ),
-                            label: { Text(s.name) }
+                            label: {
+                                HStack {
+                                    Image.async(
+                                        url: s.avatarURL,
+                                        success: {
+                                            $0.resizable()
+                                        },
+                                        failureImage: {
+                                            Image(systemName: "camera.metering.unknown")
+                                        },
+                                        placeholderImage: {
+                                            Image(systemName: "camera.metering.none")
+                                        }
+                                    )
+                                    .frame(width: 40, height: 40)
+                                    Text(s.name)
+                                }
+                            }
                         )
                         .listRowInsets(EdgeInsets())
                     }
